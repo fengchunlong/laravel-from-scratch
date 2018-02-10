@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use App\Post;
 
 class TasksController extends Controller
 {
@@ -17,4 +18,7 @@ class TasksController extends Controller
     {
         return view('tasks.show',compact('task'));
     }
+
+
+
 }
