@@ -18,11 +18,17 @@
 
 <body>
 @include('layouts.nav')
+
+@if ($flash = session('message'))
+    <div id="flash-message" class="alert alert-success" role="alert">
+        {{ $flash }}
+    </div>
+@endif
 <div class="container">
     <div class="row">
         @yield ('content')
 
-        @include('layouts.sitebar')
+        @include('layouts.sidebar')
     </div>
 </div>
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Carbon\Carbon;
+
 
 class PostsController extends Controller
 {
@@ -14,7 +16,9 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = Post::latest()->get(); // latest()降序
+        $posts = Post::latest()
+            ->filter(request(['year','month']))
+            ->get();
         return view('posts.index',compact('posts'));
     }
 
@@ -32,6 +36,8 @@ class PostsController extends Controller
         auth()->user()->publish(
             new Post(request(['title','body']))
         );
+
+        session()->flash('message','your post has been published');
 
         return redirect('/');
     }
